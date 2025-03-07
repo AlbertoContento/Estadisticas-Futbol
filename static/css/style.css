@@ -1,0 +1,32 @@
+/* Imagen de fondo en toda la página */
+body {
+  background-image: url('/static/metropolitano.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh; /* Asegura que la imagen cubra toda la altura de la pantalla */
+  margin: 0;
+}
+
+/* Estilos para el contenedor */
+.container.mt-5 {
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco semitransparente para el contenedor */
+  border-radius: 15px; /* Bordes redondeados */
+}
+
+/*Estilos para las tarjetas(ligas)*/
+.card{
+  border: 5px solid rgba(247, 24, 24, 0.3);
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente para el contenedor */
+}
+
+.card:hover{
+  border: 5px solid rgba(247, 24, 24, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.card img{
+  object-fit: contain; 
+  height: 400px;
+}

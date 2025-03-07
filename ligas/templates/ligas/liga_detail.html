@@ -1,0 +1,7 @@
+<h1>{{ liga.nombre }}</h1>
+<h2>Equipos de esta liga:</h2>
+<ul>
+  {% for equipo in liga.equipos.all %}
+    <li><a href="{% url 'equipo_detail' equipo.pk %}">{{ equipo.logo }}{{ equipo.nombre }}</a></li>
+</ul>
+
