@@ -1,0 +1,35 @@
+{% extends "general/layout.html" %}
+
+{% load static %}
+
+{% block page_content %}
+<div class="container mt-5">
+    <section>
+        <div class="row">
+            <div class="col-md-4">
+                {% comment %} <a href="{% url 'liga_detail' liga.pk %}"> {% endcomment %}
+                    <div class="card">
+                        <img src="{% static 'la_liga/la_liga_logo.png' %}" class="card-img-top" alt="LaLiga" style="object-fit: cover">
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'premier/premier-league-2-logo.png' %}" class="card-img-top" alt="Premier League">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'serie_a/serie-a-logo-png.png' %}" class="card-img-top" alt="Serie A">
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

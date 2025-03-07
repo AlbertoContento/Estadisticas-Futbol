@@ -1,0 +1,17 @@
+<h1>{{equipo.logo}}{{ equipo.nombre }}</h1>
+<p>Goles: {{ equipo.goles_marcados }}</p>
+<p>Goles en contra: {{ equipo.goles_contra }}</p>
+<p>Diferencia de Goles: {{ equipo.diferencia_goles }}</p>
+<p>Asistencias: {{ equipo.asistencias }}</p>
+<p>Penaltis: {{ equipo.penaltis_marcados }}</p>
+<p>Tarjetas Amarillas: {{ equipo.tarjetas_amarillas }}</p>
+<p>Tarjetas Rojas: {{ equipo.tarjetas_rojas }}</p>
+<p>Media de Posesion: {{ equipo.media_posesion }}</p>
+<p>Partidos Disputados: {{ equipo.partidos_jugados }}</p>
+<p>{{ equipo.ultimo_partido }}</p>
+
+<h2>Jugadores:</h2>
+<ul>
+  {% for jugador in equipo.jugadores.all %}
+    <li><a href="{% url 'jugador_detail' jugador.pk %}">{{ jugador.nombre }}</a></li>
+</ul>
