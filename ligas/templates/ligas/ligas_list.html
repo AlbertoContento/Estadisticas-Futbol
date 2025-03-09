@@ -1,34 +1,27 @@
 {% extends "general/layout.html" %}
 
 {% load static %}
-
 {% block page_content %}
 <div class="container mt-5">
     <section>
         <div class="row">
-            <div class="col-md-4">
-                {% comment %} <a href="{% url 'liga_detail' liga.pk %}"> {% endcomment %}
-                    <div class="card">
-                        <img src="{% static 'la_liga/la_liga_logo.png' %}" class="card-img-top" alt="LaLiga" style="object-fit: cover">
-                        <div class="card-body">
+            {% for liga in ligas %}
+                <div class="col-md-4">
+                    <a href="{% url 'liga_detail' liga.pk %}">
+                        <div class="card">
+                            {% if liga.nombre == "La Liga" %}
+                                <img src="{% static 'la_liga/la_liga_logo.png' %}" class="card-img-top" alt="LaLiga" style="object-fit: cover">
+                            {% elif liga.nombre == "Premier League" %}
+                                <img src="{% static 'premier/premier-league-2-logo.png' %}" class="card-img-top" alt="Premier League">
+                            {% elif liga.nombre == "Serie A" %}
+                                <img src="{% static 'serie_a/serie-a-logo-png.png' %}" class="card-img-top" alt="Serie A">
+                            {% endif %}
+                            <div class="card-body">
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{% static 'premier/premier-league-2-logo.png' %}" class="card-img-top" alt="Premier League">
-                    <div class="card-body">
-                    </div>
+                    </a>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{% static 'serie_a/serie-a-logo-png.png' %}" class="card-img-top" alt="Serie A">
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 </div>

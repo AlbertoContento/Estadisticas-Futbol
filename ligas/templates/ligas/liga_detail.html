@@ -2,6 +2,14 @@
 <h2>Equipos de esta liga:</h2>
 <ul>
   {% for equipo in liga.equipos.all %}
-    <li><a href="{% url 'equipo_detail' equipo.pk %}">{{ equipo.logo }}{{ equipo.nombre }}</a></li>
+    <li>
+      <a href="{% url 'equipo_detail' equipo.pk %}">
+        <img src="{{ equipo.logo.url }}" alt="{{ equipo.nombre }}" style="width: 50px; height: auto;">
+        {{ equipo.nombre }}
+      </a>
+    </li>  
+  {% empty %}
+    <li><h3>No hay equipos en esta liga.</h3></li>
+  {% endfor %}
 </ul>
 

@@ -15,8 +15,8 @@ urlpatterns = [
     # path('', RegisterView.as_view(), name='registrar'),
     # path('', LoginView.as_view(), name='login'),
     # path('', LogoutView.as_view(), name='logout'),
-    path('lista-ligas/', LigaListView.as_view(), name='liga_list'), #rutas app ligas
-    path('detalle-ligas/', LigaDetailView.as_view(), name='liga_detail'), #rutas app ligas
+    path('ligas/', LigaListView.as_view(), name='liga_list'), #rutas app ligas
+    path('ligas/<int:pk>/', LigaDetailView.as_view(), name='liga_detail'), #rutas app ligas
     path('equipos/', EquipoDetailView.as_view(), name='equipo_detail'),#rutos app equipos
     path('jugadores/', JugadorDetailView.as_view(), name='jugador_detail'),#rutas app jugadores
     ]
