@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Liga
 
-# Register your models here.
+
+@admin.register(Liga)
+class LigaAdmin(admin.ModelAdmin):
+  list_display = ("nombre", "abreviatura", "logo")

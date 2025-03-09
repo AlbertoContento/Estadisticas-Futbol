@@ -10,9 +10,10 @@ body {
 
 /* Estilos para el contenedor */
 .container.mt-5 {
-  padding: 50px;
   background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco semitransparente para el contenedor */
   border-radius: 15px; /* Bordes redondeados */
+  padding: 50px; /* Forzar el estilo */
+  margin-top: 20vh;
 }
 
 /*Estilos para las tarjetas(ligas)*/
@@ -29,4 +30,10 @@ body {
 .card img{
   object-fit: contain; 
   height: 400px;
+}
+
+.home p{
+  margin-top: 100px;
+  margin-bottom: 1rem;
+  text-align: -webkit-center;
 }
