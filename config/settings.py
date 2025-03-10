@@ -65,7 +65,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-import pymysql
+import pymysql # type: ignore
 pymysql.install_as_MySQLdb()
 
 DATABASES = {
