@@ -125,13 +125,15 @@ def asignar_logos_equipos():
     if os.path.exists(ruta_liga):  # Verificar si existe la carpeta de la liga
       for equipo in Equipo.objects.filter(liga=liga):
         nombre_equipo = unidecode(equipo.nombre.lower().replace(" ", "_"))  # Quitamos las tildes
-        ruta_logo = os.path.join(ruta_liga, f"{nombre_equipo}.png")  # Ruta del logo
-        if os.path.exists(ruta_logo):  # Si el logo existe
-          with open(ruta_logo, "rb") as f:
-            equipo.logo.save(f"{equipo.nombre}.png", File(f))
-          print(f"✅ Logo asignado a {equipo.nombre}")
+        if not equipo.logo:
+          ruta_logo = os.path.join(ruta_liga, f"{nombre_equipo}.png")  # Ruta del logo
+          if os.path.exists(ruta_logo):  # Si el logo existe
+            with open(ruta_logo, "rb") as f:
+              equipo.logo.save(f"{equipo.nombre}.png", File(f))
+            print(f"✅ Logo asignado a {equipo.nombre}")
+          else:
+            print(f"❌ No se encontró logo para {equipo.nombre}")
         else:
-          print(f"❌ No se encontró logo para {equipo.nombre}")
-
+          print(f"❌ El equipo {equipo.nombre} ya tiene un logo asignado.")
 if __name__ == "__main__":
     importar_estadisticas()
