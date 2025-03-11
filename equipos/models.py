@@ -27,7 +27,7 @@ class EstadisticasEquipo(models.Model):
   tarjetas_amarillas = models.PositiveBigIntegerField(default=0)
   tarjetas_rojas= models.PositiveBigIntegerField(default=0)
   media_posesion = models.FloatField(default=50.0)  # Porcentaje medio de posesión (ej. 55.3)
-  ultimos_5_partidos = models.CharField(max_length=10, default='')
+  ultimos_5_partidos = models.CharField(max_length=20, default='', blank=True, null=True)
   maximo_goleador = models.CharField(max_length=255, default='')
 
 

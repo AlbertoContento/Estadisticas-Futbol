@@ -6,6 +6,8 @@ from core.views import HomeView
 from ligas.views import LigaListView, LigaDetailView
 from equipos.views import EquipoDetailView
 from jugadores.views import JugadorDetailView
+from equipos.views import importar_equipos_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,7 +19,8 @@ urlpatterns = [
     # path('', LogoutView.as_view(), name='logout'),
     path('ligas/', LigaListView.as_view(), name='liga_list'), #rutas app ligas
     path('ligas/<int:pk>/', LigaDetailView.as_view(), name='liga_detail'), #rutas app ligas
-    path('equipos/', EquipoDetailView.as_view(), name='equipo_detail'),#rutos app equipos
+    path('importar-equipos/', importar_equipos_view, name='importar_equipos'),
+    path('equipos/<int:pk>/', EquipoDetailView.as_view(), name='equipo_detail'),#rutos app equipos
     path('jugadores/', JugadorDetailView.as_view(), name='jugador_detail'),#rutas app jugadores
     ]
 

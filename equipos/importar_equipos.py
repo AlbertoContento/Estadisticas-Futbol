@@ -1,93 +1,137 @@
-import pandas as pd
 import os
+import pandas as pd
 from django.conf import settings
+from django.core.files import File
 from equipos.models import Equipo, EstadisticasEquipo
 from ligas.models import Liga
+from unidecode import unidecode  # Importamos la función unidecode
 
 
 # Definir rutas de las carpetas
-RUTA_ESTADISTICAS = os.path.join(settings.BASE_DIR, "data/estadisticas")
 RUTA_CLASIFICACION = os.path.join(settings.BASE_DIR, "data/clasificacion")
+RUTA_ESTADISTICA = os.path.join(settings.BASE_DIR, "data/estadisticas")
 
 # Diccionario de nombres de archivo y ligas
 LIGAS = {
-    "laliga.csv": "La Liga",
-    "premier.csv": "Premier League",
-    "seriea.csv": "Serie A",
+  "La_Liga.csv": "La Liga",
+  "Premier_League.csv": "Premier League",
+  "Serie_A.csv": "Serie A",
 }
 
 def limpiar_cadena(valor):
-    """Elimina caracteres extraños y espacios innecesarios."""
-    if isinstance(valor, str):
-        return valor.strip().replace('"', '').replace("...", "").replace(" - ", " -")
-    return valor
+  """Elimina caracteres extraños y espacios innecesarios."""
+  if isinstance(valor, str):
+    return valor.strip().replace('"', '').replace("...", "").replace(" - ", " -")
+  return valor
+
+def comprobar_dataframe(df):
+  """Comprueba si el DataFrame tiene datos."""
+  if df.empty:
+    print(f"⚠️ El DataFrame está vacío o no tiene datos válidos.")
+    return False
+  print(f"✔️ DataFrame cargado con {len(df)} filas.")
+  return True
+
+def crear_o_buscar_equipo(nombre_equipo, liga):
+  """Crea o busca un equipo en la base de datos."""
+  nombre_equipo = limpiar_cadena(nombre_equipo)
+  equipo, created = Equipo.objects.get_or_create(nombre=nombre_equipo, liga=liga)
+  print(f"{'🆕' if created else '🔄'} Equipo {'creado' if created else 'encontrado'}: {equipo.nombre}")
+  return equipo
 
 def procesar_archivo(ruta_csv, liga, tipo_datos):
-    """Función para procesar los archivos CSV y actualizar la base de datos."""
-    if not os.path.exists(ruta_csv):
-        print(f"⚠️ No se encontró {ruta_csv}")
-        return
+  """Procesa los archivos CSV y actualiza la base de datos."""
+  print(f"📄 Procesando archivo: {ruta_csv}...")
 
-    # Cargar el CSV con Pandas
-    df = pd.read_csv(ruta_csv)
+  if not os.path.exists(ruta_csv):
+    print(f"⚠️ No se encontró {ruta_csv}")
+    return
 
-    for _, fila in df.iterrows():
-        nombre_equipo = limpiar_cadena(fila["Equipo"])
-        equipo = Equipo.objects.filter(nombre=nombre_equipo, liga=liga).first()
+  df = pd.read_csv(ruta_csv)
+  if not comprobar_dataframe(df):
+    return
+  # Iterar sobre las filas del CSV
+  for _, fila in df.iterrows(): 
+    nombre_equipo = fila["Equipo"]
+    equipo = crear_o_buscar_equipo(nombre_equipo, liga)
+    print(tipo_datos)
+    print("Columnas del DataFrame:", df.columns.tolist())
+    if tipo_datos == "clasificacion":
+      print("Actualizando clasificacion")
+      ultimos_5 = fila.get("Últimos 5", "").strip()
+      if len(ultimos_5) > 14:
+        ultimos_5 = ultimos_5[:14]
+      EstadisticasEquipo.objects.update_or_create(
+        equipo=equipo,
+        defaults={
+          "partidos_jugados": fila.get("PJ", 0),
+          "partidos_ganados": fila.get("PG", 0),
+          "partidos_empatados": fila.get("PE", 0),
+          "partidos_perdidos": fila.get("PP", 0),
+          "goles_a_favor": fila.get("GF", 0),
+          "goles_en_contra": fila.get("GC", 0),
+          "diferencia_goles": fila.get("DG", 0),
+          "puntos": fila.get("Pts", 0),
+          "maximo_goleador": limpiar_cadena(fila.get("Máximo Goleador del Equipo", "")),
+          "ultimos_5_partidos": ultimos_5,
+        },
+      )
+      print(f"✅ Clasificacion actualizada para {equipo.nombre}")
 
-        if not equipo:
-            print(f"⚠️ No se encontró el equipo {nombre_equipo} en {liga.nombre}.")
-            continue
-
-        # Crear o actualizar estadísticas o clasificación
-        if tipo_datos == "estadisticas":
-            EstadisticasEquipo.objects.update_or_create(
-                equipo=equipo,
-                defaults={
-                    "partidos_jugados": fila["PJ"],
-                    "partidos_ganados": fila["PG"],
-                    "partidos_empatados": fila["PE"],
-                    "partidos_perdidos": fila["PP"],
-                    "goles_a_favor": fila["GF"],
-                    "goles_en_contra": fila["GC"],
-                    "diferencia_goles": fila["DG"],
-                    "puntos": fila["Pts"],
-                    "maximo_goleador": limpiar_cadena(fila.get("Máximo Goleador del Equipo", "")),
-                    "ultimos_5_partidos": fila.get("Últimos 5", ""),
-                },
-            )
-            print(f"✅ Estadísticas de {equipo.nombre} actualizadas desde {ruta_csv}.")
-        elif tipo_datos == "clasificacion":
-            EstadisticasEquipo.objects.update_or_create(
-                equipo=equipo,
-                defaults={
-                    "asistencias": fila.get("Ass", 0),
-                    "penaltis_marcados": fila.get("TP", 0),
-                    "tarjetas_amarillas": fila.get("TA", 0),
-                    "tarjetas_rojas": fila.get("TR", 0),
-                    "media_posesion": fila.get("Pos.", 0),
-                },
-            )
-            print(f"✅ Clasificación de {equipo.nombre} actualizada desde {ruta_csv}.")
+      if tipo_datos == "estadisticas":
+        print("Actualizando estadisticas")
+        EstadisticasEquipo.objects.update_or_create(
+          equipo=equipo,
+          defaults={
+            "asistencias": fila.get("Ass", 0),
+            "penaltis_marcados": fila.get("TP", 0),
+            "tarjetas_amarillas": fila.get("TA", 0),
+            "tarjetas_rojas": fila.get("TR", 0),
+            "media_posesion": fila.get("Pos.", 0),
+          },
+        )
+        print(f"✅ Estadisticas actualizadas para {equipo.nombre}")
 
 def importar_estadisticas():
-    for archivo, nombre_liga in LIGAS.items():
-        # Buscar la liga
-        liga = Liga.objects.filter(nombre=nombre_liga).first()
-        if not liga:
-            print(f"⚠️ No se encontró la liga {nombre_liga} en la base de datos.")
-            continue
+  """Importa estadísticas y clasificación para todas las ligas."""
+  print("🚀 Iniciando importación de datos...")
 
-        # Procesar archivo de estadísticas
-        ruta_estadisticas_csv = os.path.join(RUTA_ESTADISTICAS, archivo)
-        procesar_archivo(ruta_estadisticas_csv, liga, "estadisticas")
+  for archivo, nombre_liga in LIGAS.items():
+    liga = Liga.objects.filter(nombre=nombre_liga).first()
+    if not liga:
+      print(f"⚠️ No se encontró la liga {nombre_liga} en la base de datos.")
+      continue
 
-        # Procesar archivo de clasificación
-        ruta_clasificacion_csv = os.path.join(RUTA_CLASIFICACION, archivo)
-        procesar_archivo(ruta_clasificacion_csv, liga, "clasificacion")
+    # Procesar archivo de clasificación
+    ruta_clasificacion_csv = os.path.join(RUTA_CLASIFICACION, archivo)
+    procesar_archivo(ruta_clasificacion_csv, liga, "clasificacion")
+    # Procesar archivo de estadisticas
+    ruta_estadisticas_csv = os.path.join(RUTA_ESTADISTICA, archivo)
+    procesar_archivo(ruta_estadisticas_csv, liga, "estadisticas")
 
-    print("🚀 Importación de estadísticas y clasificación finalizada.")
+    # Asignar logos a los equipos
+    asignar_logos_equipos()
+  print("✅ Importación finalizada.")
 
+def asignar_logos_equipos():
+  '''Asigna los logos a los equipos desde la carpeta logos_equipos'''
+  ruta_base = os.path.join(settings.MEDIA_ROOT, 'logos_equipos')  # Ruta a los logos
+  for liga in Liga.objects.all():
+    print(liga.nombre)
+    nombre_liga = liga.nombre.lower().replace(" ", "_")
+    print(nombre_liga) 
+    ruta_liga = os.path.join(ruta_base, nombre_liga)  # Carpeta de la liga
+    print(ruta_liga)
+    if os.path.exists(ruta_liga):  # Verificar si existe la carpeta de la liga
+      for equipo in Equipo.objects.filter(liga=liga):
+        nombre_equipo = unidecode(equipo.nombre.lower().replace(" ", "_"))  # Quitamos las tildes
+        ruta_logo = os.path.join(ruta_liga, f"{nombre_equipo}.png")  # Ruta del logo
+        if os.path.exists(ruta_logo):  # Si el logo existe
+          with open(ruta_logo, "rb") as f:
+            equipo.logo.save(f"{equipo.nombre}.png", File(f))
+          print(f"✅ Logo asignado a {equipo.nombre}")
+        else:
+          print(f"❌ No se encontró logo para {equipo.nombre}")
 
 if __name__ == "__main__":
     importar_estadisticas()
