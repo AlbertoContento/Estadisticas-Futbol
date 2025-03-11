@@ -5,11 +5,11 @@ from django.http import HttpResponse
 from .importar_equipos import importar_estadisticas
 
 class EquipoDetailView(DetailView):
-  model = Equipo #Modelo
-  template_name = 'equipo_detail.html' # Nombre Plantilla
-  context_object_name = 'equipo' # nombre variable en el template
+    model = Equipo  # Modelo
+    template_name = 'equipo_detail.html'  # Nombre Plantilla
+    context_object_name = 'equipo'  # Nombre variable en el template
 
-#Ejecutar la importación de equipos
+# Ejecutar la importación de equipos
 def importar_equipos_view(request):
     # Aquí se ejecuta el script para importar los equipos
     try:

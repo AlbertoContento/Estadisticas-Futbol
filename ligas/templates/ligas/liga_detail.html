@@ -3,21 +3,114 @@
 {% block page_content %}
 <div class="container mt-4">
   <div class="logo-container">
-    <img src="{{ liga.logo.url }}" alt="Logo de {{ liga.nombre }}" style="width: 250x; height: 175px; display: block; margin: 0 auto; background-color: #f8f9fa; border-radius: 5px; padding: 10px;">
+    <img src="{{ liga.logo.url }}" alt="Logo de {{ liga.nombre }}" style="width: 100px; height: 100px; display: block; margin: 0 auto; background-color: #f8f9fa; border-radius: 5px; padding: 10px;">
   </div>
 </div>
 
-<h2>Equipos de esta liga:</h2>
-<ul>
+<table class="table table-striped table-bordered mt-4">
+  <tr>
+    <th>Logo</th>
+    <th>Nombre</th>
+    <th>PJ</th>
+    <th>PG</th>
+    <th>PE</th>
+    <th>PP</th>
+    <th>GF</th>
+    <th>GC</th>
+    <th>DG</th>
+    <th>Pts</th>
+    <th>Asist</th>
+    <th>Penaltis</th>
+    <th>Amarillas</th>
+    <th>Rojas</th>
+    <th>Posesion</th>
+    <th>Ultimos 5</th>
+    <th>Goleador</th>
+  </tr>
   {% for equipo in liga.equipos.all %}
-    <li>
-      <a href="{% url 'equipo_detail' equipo.pk %}">
-        <img src="{{ equipo.logo.url }}" alt="{{ equipo.nombre }}" class="logo-equipo">
-        {{ equipo.nombre }}
-      </a>
-    </li>  
+      <tr>
+        <td>
+          <a href="{% url 'equipo_detail' equipo.pk %}">
+            <img src="{{ equipo.logo.url }}" class="logo-equipo" style="width: 20px; height: 20px; display: block; margin: 0 auto; padding: 0;">
+          </a>
+        </td>
+        <td class="enlace" 
+        {% if forloop.counter <= 4 %}
+          style="background-color: rgb(0, 128, 0);"
+        {% elif forloop.counter >= 5 and forloop.counter <= 6 %}
+          style="background-color: rgb(226, 226, 47);"
+        {% elif forloop.counter >= 18 and forloop.counter <= 20 %}
+          style="background-color: rgb(165, 12, 19);"
+        {% endif %}>        
+          <a href="{% url 'equipo_detail' equipo.pk %}">{{ equipo.nombre }}</a>
+        </td>
+        <th class="puntos">
+          {{ equipo.estadisticas.puntos }}
+        </th>
+        <td>
+          {{ equipo.estadisticas.partidos_jugados }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.partidos_ganados }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.partidos_empatados }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.partidos_perdidos }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.goles_a_favor }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.goles_en_contra }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.diferencia_goles }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.asistencias }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.penaltis_marcados }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.tarjetas_amarillas }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.tarjetas_rojas }}
+        </td>
+        <td>
+          {{ equipo.estadisticas.media_posesion }}
+        </td>
+        <td style="text-align: center; vertical-align: middle;">
+          {% for resultado in equipo.estadisticas.ultimos_5_partidos_list %}
+            <div class="resultados" style=" 
+              {% if resultado == "PG" %}
+                background-color: rgb(0, 128, 0); /* Verde */
+              {% elif resultado == "PE" %}
+                background-color: rgb(226, 226, 47); /* Amarillo */
+              {% elif resultado == "PP" %}
+                background-color: rgb(165, 12, 19);  /* Rojo */
+              {% endif %}
+              "
+            >
+              {{ resultado }}
+            </div>
+          {% endfor %}
+        </td>
+        <td>
+          {{ equipo.estadisticas.maximo_goleador }}
+        </td>
+      </tr>
   {% empty %}
     <li><h3>No hay equipos en esta liga.</h3></li>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}
+
+<li>
+  <a href="{% url 'equipo_detail' equipo.pk %}">
+    <img src="{{ equipo.logo }}" alt="{{ equipo.nombre }}" class="logo-equipo">
+  </a>
+</li>

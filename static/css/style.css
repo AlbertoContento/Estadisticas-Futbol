@@ -37,3 +37,25 @@ body {
   margin-bottom: 1rem;
   text-align: -webkit-center;
 }
+
+.table-striped{
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.table-striped td.enlace a{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.table-striped div.resultados{
+  display: inline-block;  /* Para mostrarlos en la misma línea */
+  margin: 2px;            /* Pequeño espacio entre recuadros */
+  width: 30px;            /* Ancho fijo */
+  height: 30px;           /* Alto fijo */
+  line-height: 30px;      /* Para centrar el texto verticalmente */
+  text-align: center;     /* Centrar el texto horizontalmente */
+  border-radius: 5px;     /* Bordes redondeados */
+  font-weight: bold;      /* Texto en negrita (opcional) */
+  color: #000000;          /* Color del texto (ajústalo según fondo) */
+}

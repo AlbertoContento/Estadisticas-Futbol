@@ -33,3 +33,12 @@ class EstadisticasEquipo(models.Model):
 
   def __str__(self):
     return f"Estadísticas de {self.equipo.nombre}"
+  
+  #Creamos esta propiedad para porder acceder como si fuera un atributo obj.ultimos_5_partidos_list
+  @property
+  def ultimos_5_partidos_list(self):
+    """
+    Devuelve una lista con los resultados de los últimos 5 partidos,
+    separando la cadena por espacios.
+    """
+    return self.ultimos_5_partidos.split() if self.ultimos_5_partidos else []
