@@ -7,9 +7,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+<<<<<<< HEAD
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'liga_list' %}">Ligas</a>
                 </li>
+=======
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'liga_list' %}">Ligas</a>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'equipo_list' %}">Equipos</a>
+                    </li>   
+                {% endif %}        
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'legal' %}">Aviso Legal</a>
+                    </li>           
+                {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registrar' %}">Registrar</a>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% endif %}
+>>>>>>> recuperacion
             </ul>
         </div>
     </div>

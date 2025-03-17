@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Entorno virtual
 venv/
 
@@ -45,3 +46,28 @@ config/settings_local.py
 
 
 estructura_proyecto.php
+=======
+# Archivos de Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Migraciones de Django
+*/migrations/*
+
+# Archivos de entorno
+.env
+*.sqlite3
+
+# Archivos estáticos y de medios (si los generas dinámicamente)
+staticfiles/
+media/
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+
+estructura_proyecto.php
+>>>>>>> recuperacion

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>{{equipo.logo}}{{ equipo.nombre }}</h1>
 <p>Goles: {{ equipo.goles_marcados }}</p>
 <p>Goles en contra: {{ equipo.goles_contra }}</p>
@@ -15,3 +16,77 @@
   {% for jugador in equipo.jugadores.all %}
     <li><a href="{% url 'jugador_detail' jugador.pk %}">{{ jugador.nombre }}</a></li>
 </ul>
+=======
+{% extends "general/layout.html" %}
+
+{% load flag_tags %}
+
+{% block page_content %}
+<div class="container mt-4">
+  <div class="logo-container">
+    <img src="{{ equipo.logo.url }}" alt="Logo de {{ equipo.nombre }}" style="width: 90px; height: 100px; display: block; margin: 0 auto;">
+  </div>
+</div>
+
+<table class="table table-striped table-bordered mt-4">
+  <tr>
+    <th style="text-align: center;">Nombre</th>
+    <th style="text-align: center;">Equipo</th>
+    <th style="text-align: center;">Pos</th>
+    <th style="text-align: center;">Edad</th>
+    <th style="text-align: center;">País</th>
+    <th style="text-align: center;">Goles</th>
+    <th style="text-align: center;">Asis</th>
+    <th style="text-align: center;">G+A</th>
+    <th style="text-align: center;">TA</th>
+    <th style="text-align: center;">TR</th>
+    <th style="text-align: center;">PJ</th>
+    <th style="text-align: center;">Min</th>
+  </tr>
+  {% for jugador in equipo.lista_jugadores.all %}
+      <tr>
+        <td style="font-weight: bold;">
+          {{ jugador.nombre }}
+        </td>
+        <td>
+          {% comment %} {{ jugador.equipo }} {% endcomment %}
+          <img src="{{ equipo.logo.url }}" alt="Logo de {{ equipo.nombre }}" style="width: 25px; height: 25px; display: block; margin: 0 auto;">
+        </td>
+        <td align="center">
+          {{ jugador.posicion }}
+        </td>
+        <td align="center">
+          {{ jugador.edad }}
+        </td>
+        <td align="center">
+          {{ jugador.pais|flag }}
+        </td>
+        <td align="center">
+          {{ jugador.goles }}
+        </td>
+        <td align="center">
+          {{ jugador.asistencias }}
+        </td>
+        <td align="center">
+          {{ jugador.goles_asistencias }}
+        </td>
+        <td align="center">
+          {{ jugador.tarjetas_amarillas }}
+        </td>
+        <td align="center">
+          {{ jugador.tarjetas_rojas }}
+        </td>
+        <td align="center">
+          {{ jugador.partidos_jugados }}
+        </td>
+        <td align="center">
+          {{ jugador.minutos_jugados }}
+        </td>
+      </tr>
+  {% empty %}
+      <tr>
+        <td colspan="12">No hay jugadores en este equipo</td>
+      </tr>
+  {% endfor %}
+{% endblock %}
+>>>>>>> recuperacion
