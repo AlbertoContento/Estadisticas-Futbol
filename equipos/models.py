@@ -15,7 +15,7 @@ class Equipo(models.Model):
 class EstadisticasEquipo(models.Model):
   equipo = models.OneToOneField(Equipo, on_delete=models.CASCADE, related_name='estadisticas')
   partidos_jugados = models.PositiveIntegerField(default=0)
-  partidos_ganados = models.PositiveIntegerField(default=0)
+  partidos_ganados = models.IntegerField(default=0)
   partidos_empatados = models.PositiveIntegerField(default=0)
   partidos_perdidos = models.PositiveIntegerField(default=0)
   goles_a_favor = models.PositiveIntegerField(default=0)
