@@ -1,6 +1,6 @@
-futbol_stats/              # Directorio del proyecto
+PROYECTO-ESTADISTICAS FUTBOL/              # Directorio del proyecto
 │── .git/                  # Carpeta de Git (tras inicializar el repo)
-│── venv/                  # Entorno virtual de Python
+│── env/                  # Entorno virtual de Python
 │── requirements.txt        # Dependencias del proyecto
 │── .gitignore              # Archivos a ignorar en Git
 │── manage.py               # Script de administración de Django
@@ -12,8 +12,10 @@ futbol_stats/              # Directorio del proyecto
 │   └── asgi.py             # Servidor ASGI (opcional)
 │── core/                   # Aplicación principal del proyecto
 │   │── migrations/         # Migraciones de la base de datos
-│   │── templates/          # HTML, CSS, Bootstrap
-│   │── static/             # Archivos estáticos (CSS, JS, imágenes)
+│   │── templates/
+│   │   │── _includes/ 
+        │── general/ 
+│   │── templatetags/         # HTML, CSS, Bootstrap
 │   │── models.py           # Modelos de la base de datos
 │   │── views.py            # Lógica de las vistas
 │   │── urls.py             # Rutas de la aplicación
@@ -40,4 +42,13 @@ futbol_stats/              # Directorio del proyecto
 │   │── views.py            # Lógica de las vistas
 │   │── admin.py            # Panel de administración de Django
 │   └── forms.py 
-└── db.sqlite3              # Base de datos (cambiaremos a MySQL)
+|__media/
+│   │──banderas_paises
+│   │──logos_equipos
+    │  │──la_liga
+    │  │──premier_league
+    │  │──serie_a
+    |__logos_ligas
+│── static/                 # Archivos estáticos (CSS, JS, imágenes)
+│   │── css/
+│   │── favicon/
