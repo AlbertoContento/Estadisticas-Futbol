@@ -153,4 +153,5 @@ El programa utiliza webbrowser para abrir el navegador y reproducir la musica y 
 
 🎨 Capturas de Pantalla 
 Aquí tienes una vista previa de cómo luce el proyecto:
-![Pantalla Principal](https://github.com/AlbertoContento/PROYECTOS-PYTHON/blob/main/PROYECTO09%20-%20Sistema%20de%20Recomendacion%20de%20Netflix/assets/Captura%20_de%20_pantalla.png)
+![Pantalla Principal](https://github.com/AlbertoContento/Estadisticas-Futbol/blob/main/assets/Captura%20de%20pantalla.png)
+![Pantalla Principal](https://github.com/AlbertoContento/Estadisticas-Futbol/blob/main/assets/Captura%20de%20pantalla1.png)
