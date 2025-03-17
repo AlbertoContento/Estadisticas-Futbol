@@ -73,7 +73,6 @@ urls_equipos = {
     "Monza": "https://fbref.com/es/equipos/21680aa4/Estadisticas-de-Monza"
 }
 
-
 def setup_driver():
     """
     Configura e instala automáticamente el ChromeDriver utilizando webdriver-manager.
@@ -89,7 +88,6 @@ def setup_driver():
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
-
 def leer_tablas(url, driver):
     """
     Utiliza Selenium para abrir la URL, esperar a que cargue la tabla y obtener el HTML.
@@ -100,8 +98,6 @@ def leer_tablas(url, driver):
         # Espera hasta que aparezca algún elemento <table> (hasta 30 segundos)
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.TAG_NAME, "table"))
-            # Si tienes un selector más específico, por ejemplo:
-            # EC.presence_of_element_located((By.CSS_SELECTOR, "table#stats_standard"))
         )
         html = driver.page_source
         tablas = pd.read_html(StringIO(html))
@@ -124,8 +120,9 @@ def extraer_datos():
     for equipo, url in urls_equipos.items():
         print(f"Extrayendo datos para {equipo} desde {url}")
         tablas = leer_tablas(url, driver)
+
         if tablas:
-            # Suponemos que la tabla de interés es la primera (índice 0)
+            # Cojemos la tabla 9 de estadísticas de jugadores
             tabla_jugadores = tablas[9]
             print(f"🆙{tabla_jugadores}")
             nombre_archivo = f"data/jugadores/{equipo.replace(' ', '_')}_jugadores.csv"

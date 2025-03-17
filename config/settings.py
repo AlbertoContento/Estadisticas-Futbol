@@ -72,8 +72,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'futbol',
-        'USER': 'alberto',
-        'PASSWORD': 'alberto1234',
+        'USER': 'root',
+        'PASSWORD': 'root1234',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
@@ -115,3 +115,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # Donde Django almacenará los archivos 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INTERNAL_IPS = ['127.0.0.1',]
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000  # Puedes ajustarlo según lo necesario
+
+LOGIN_URL = "login"  # Página de login a la que se redirige si no está autenticado
+LOGIN_REDIRECT_URL = "home"  # Página a la que se redirige tras hacer login
+LOGOUT_REDIRECT_URL = "home"  # Página a la que se redirige tras hacer logout

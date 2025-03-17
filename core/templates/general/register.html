@@ -1,0 +1,32 @@
+{% extends "general/layout.html" %}
+
+{% block page_title %}
+	<title>Registrate</title>
+	{% include '_includes/_messages.html' %}
+{% endblock %}
+
+{% block page_content %}
+
+<div class="container mt-5" style="text-align: center;">
+	<section class="register">
+		<h1>Registrate</h1>
+		<p>Registrate para poder acceder a todas las funcionalidades de la página</p>
+	</section>
+<form method="POST">
+	{% csrf_token %}
+	<div class="mb-3" style="font-weight: bold; color: rgb(196, 74, 74); max-width: 300px; text-align: center; margin: 0 auto" >
+		<label for="username" class="user-label">Nombre de usuario</label>
+		<input type="text" class="form-control" id="username" name="username">
+		<label for="email" class="email-label">Correo electrónico</label>
+		<input type="email" class="form-control" id="email" name="email">
+		<label for="password" class="password-label">Contraseña</label>
+		<input type="password" class="form-control" id="password" name="password">
+		<label for="password2" class="password2-label">Repite la contraseña</label>
+		<input type="password" class="form-control" id="password2" name="password2">
+	</div>
+	<div class="d-grid gap-2 col-6 mx-auto">
+	<button type="submit" class="btn btn-primary" style="font-weight: bold; margin: 0 auto;">Registrarse</button>
+	</div>
+</form>
+</div>
+{% endblock %}

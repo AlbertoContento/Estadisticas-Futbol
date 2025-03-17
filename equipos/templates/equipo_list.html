@@ -1,0 +1,74 @@
+{% extends "general/layout.html" %}
+
+{% block page_title %}
+  <title>Clasificacion Equipos</title>
+{% endblock %}
+
+{% block page_content %}
+<h1 style="
+    color: rgb(196, 74, 74);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+">
+    Clasificación de Equipos de todas las ligas
+</h1><table class="table table-striped table-bordered mt-4">
+  <thead>
+    <tr>
+      <th style="text-align: center;">Logo</th>
+      <th style="text-align: center;">Nombre</th>
+      <th style="text-align: center;">Liga</th>
+      <th style="text-align: center;">Puntos</th>
+      <th style="text-align: center;">Partidos Jugados</th>
+      <th style="text-align: center;">Partidos Ganados</th>
+      <th style="text-align: center;">Partidos Empatados</th>
+      <th style="text-align: center;">Partidos Perdidos</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for equipo in equipos.all %}
+    <tr>
+      <td>
+        <a href="{% url 'equipo_detail' equipo.pk %}">
+          <img src="{{ equipo.logo.url }}" class="logo-equipo" style="width: 20px; height: 20px; display: block; margin: 0 auto; padding: 0;">
+        </a>
+      </td>
+      <td>
+        <a href="{% url 'equipo_detail' equipo.pk %}" style="text-decoration: none; color: black; font-weight: bold;">{{ equipo.nombre }}</a>
+      </td>
+      <td align="center">
+        {% if equipo.liga.logo %}
+          <a href="{% url 'liga_detail' equipo.liga.pk %}">
+            <img src="{{ equipo.liga.logo.url }}" alt="Logo de {{ equipo.liga.nombre }}" style="width: 25px; height: 30px;">
+          </a>
+            {% else %}
+          No disponible
+        {% endif %}
+      </td>
+      <td class="puntos" align="center">
+        {{ equipo.estadisticas.puntos }}
+      </td>
+      <td align="center">
+        {{ equipo.estadisticas.partidos_jugados }}
+      </td>
+      <td align="center">
+        {{ equipo.estadisticas.partidos_ganados }}
+      </td>
+      <td align="center">
+        {{ equipo.estadisticas.partidos_empatados }}
+      </td>
+      <td align="center">
+        {{ equipo.estadisticas.partidos_perdidos }}
+      </td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="4"><h3>No hay equipos en esta liga.</h3></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
