@@ -1,0 +1,144 @@
+[33mcommit 75db251949dc7544ef6ecb232a0cc479cc516dac[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Merge: b8aca41 c3ead83
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 18:14:41 2025 +0100
+
+    mergeando rama recuperacion
+
+[33mcommit c3ead8387d669a87033846af795c0ed24fa3e201[m[33m ([m[1;32mrecuperacion[m[33m)[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 18:05:30 2025 +0100
+
+    Creacion de .gitignore
+
+[33mcommit 3669a6d7404ccee186ec31c841edd6c3b2a3d4a7[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 17:57:35 2025 +0100
+
+    Readme creado
+
+[33mcommit 7716706f4ff115ed7d3271aacc56c7560dcdd46a[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 13:53:11 2025 +0100
+
+    Ultimo commit funcinoando 100%
+
+[33mcommit b8aca4160eece82681377fd63ef0c9a0658a5c34[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 13:13:36 2025 +0100
+
+    Guardando cambios antes de volver al commit 94e8588
+
+[33mcommit d323f1bc355fe19bf0c98af54b7ae8cfbff80835[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 12:46:49 2025 +0100
+
+    Primer commit - Subiendo proyecto
+
+[33mcommit bf0df640031942467735e88af5d2c2cde0095b25[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 10 12:57:48 2025 +0100
+
+    Creacion de extraer_tablas_datos.py para extraer las tablas de datos d fbref.com y guardamos en archivos .csv
+
+[33mcommit a11adff6e348091913dcc96ba3487a6487532460[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Sun Mar 9 09:56:20 2025 +0100
+
+    Creacion de ligas en admin y arreglo el funcionamiento de vistas ligas
+
+[33mcommit 6a5a8f8d7c42cfda4d76595ff09723898d83f067[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Fri Mar 7 13:19:33 2025 +0100
+
+    Creacion de vista home, liga_list, liga_detail, equipo_detail y jugador_detail creacion de rutas y htmls asi como _header.html y layout.html
+
+[33mcommit f1def60e9dc83556fd12633b16b2c237b29c68ee[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Thu Mar 6 13:22:41 2025 +0100
+
+    Configuracion de mysql y settings.py and create requirements.txt and Readme.md
+
+[33mcommit 2ad78be373447bc9208b0dc8379d91af9738ba0c[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Wed Mar 5 18:44:37 2025 +0100
+
+    Inicializacion del proyecto en Django, Git, mysqlclient y request
+
+[33mcommit 94e85889e1e66f08419396f79a5513b2ef1b491f[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 12:15:07 2025 +0100
+
+    modificacino de estrutura.php
+
+[33mcommit dd9dabdce79424beb87f828287020fcb8ce04cbb[m
+Author: Alberto Contento Guerrero <albertocontentoguerrero@hotmail.com>
+Date:   Mon Mar 17 12:04:27 2025 +0100
+
+    Initial commit
+
+[33mcommit 55712b4f46254d6c25290c335c89f110b04d0ec6[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 17 11:59:47 2025 +0100
+
+    Creacion de vistas login y registrar y configuracion de login_required creacion de htmls y formularios
+
+[33mcommit b36b54bf8eeacab5cbd33242c405c74d54ef3df9[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Thu Mar 13 10:32:29 2025 +0100
+
+    Creacion de archivos .csv de jugadores con sus estadisticas
+
+[33mcommit 22cb3404d155339528d8cfee4012ce7c4c429b98[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Tue Mar 11 14:15:04 2025 +0100
+
+    Modificacion de estilos de vistas de ligas
+
+[33mcommit 33fdf27d1bea051f8ce6997b47ce225bd6280960[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Tue Mar 11 10:01:23 2025 +0100
+
+    Modificacion de imortar_equipos.py para controlar si el logo ya esta en BBDD
+
+[33mcommit 5ad97f2f5fee91285aaadd22391271d2f794c587[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Tue Mar 11 10:00:19 2025 +0100
+
+    Creacion de importar_equipos.py importamos estadisticas y logos de equipos a nuestra base de datos
+
+[33mcommit 1f462f52f786c54b0023640d723a098905a46324[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 10 18:46:22 2025 +0100
+
+    Proyecto funcionando hasta la importacion de datos de los .csv
+
+[33mcommit 2afa1cba02db5d7295190550486d7d092663d2c0[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Mon Mar 10 18:35:28 2025 +0100
+
+    Vuelta al commit anterior y creacion importar_equipos.py y run_server_and_import.py
+
+[33mcommit 19458ed0264070748542573a0b280714b5cadc1b[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Sun Mar 9 09:56:20 2025 +0100
+
+    Creacion de ligas en admin y arreglo el funcionamiento de vistas ligas
+
+[33mcommit 79e58312c07250902741c76f6a025ce281c509cc[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Fri Mar 7 13:19:33 2025 +0100
+
+    Creacion de vista home, liga_list, liga_detail, equipo_detail y jugador_detail creacion de rutas y htmls asi como _header.html y layout.html
+
+[33mcommit b0269b89077f3a5750e9dee5e0f3199494a9b9d3[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Thu Mar 6 13:22:41 2025 +0100
+
+    Configuracion de mysql y settings.py and create requirements.txt and Readme.md
+
+[33mcommit f4ded0a5d0a2cb85c24e6632e230725ed97a6681[m
+Author: Alberto <albertillo_ec@hotmail.com>
+Date:   Wed Mar 5 18:44:37 2025 +0100
+
+    Inicializacion del proyecto en Django, Git, mysqlclient y request
