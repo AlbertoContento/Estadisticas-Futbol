@@ -1,14 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-from django.views.generic import DetailView
-from .models import Equipo
-
-
-class EquipoDetailView(DetailView):
-  model = Equipo #Modelo
-  template_name = 'equipo_detail.html' # Nombre Plantilla
-  context_object_name = 'equipo' # nombre variable en el template
-=======
 from django.views.generic import DetailView, ListView
 from .models import Equipo
 from django.http import HttpResponse
@@ -38,4 +28,3 @@ def importar_equipos_view(request):
         return HttpResponse("Equipos importados correctamente.")
     except Exception as e:
         return HttpResponse(f"Error al importar los equipos: {e}")
->>>>>>> recuperacion
