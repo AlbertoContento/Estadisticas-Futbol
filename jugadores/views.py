@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-from django.views.generic import DetailView
-from .models import Jugador
-
-class JugadorDetailView(DetailView):
-  model = Jugador
-  template_name = 'jugador_detail.html'
-  context_object_name = 'jugador'
-=======
 from django.http import HttpResponse
 from django.views.generic import DetailView
 from .models import Jugador
@@ -28,4 +18,3 @@ def importar_jugadores_view(request):
         return HttpResponse("Jugadores importados correctamente.")
     except Exception as e:
         return HttpResponse(f"Error al importar los jugadores: {e}")
->>>>>>> recuperacion
