@@ -2,7 +2,6 @@ from django.db import models
 from ligas.models import Liga
 
 
-#Modelo Equipo
 class Equipo(models.Model):
   nombre = models.CharField(max_length=50, unique=True)
   liga = models.ForeignKey(Liga, on_delete=models.CASCADE, related_name='equipos')#si se borra una liga se borran los equipos
