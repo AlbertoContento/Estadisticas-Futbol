@@ -7,11 +7,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-<<<<<<< HEAD
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'liga_list' %}">Ligas</a>
-                </li>
-=======
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'liga_list' %}">Ligas</a>
@@ -39,7 +34,6 @@
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
                 {% endif %}
->>>>>>> recuperacion
             </ul>
         </div>
     </div>

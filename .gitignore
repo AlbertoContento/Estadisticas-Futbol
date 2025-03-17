@@ -1,52 +1,3 @@
-<<<<<<< HEAD
-# Entorno virtual
-venv/
-
-# Archivos de Python compilados
-*.pyc
-*.pyo
-__pycache__/
-
-# Configuración de entorno
-.env
-*.env
-
-# Base de datos SQLite (aunque usas MySQL, por si acaso)
-db.sqlite3
-db.sqlite3-journal
-
-# Archivos de migraciones compiladas
-migrations/**/__pycache__/
-
-# Archivos de logs
-logs/
-*.log
-
-# Archivos de caché y temporales
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
-
-# Archivos de compilación y dependencias
-node_modules/
-package-lock.json
-
-# Archivos de medios y estáticos generados
-media/
-staticfiles/
-
-# Configuración de IDEs y editores
-.vscode/
-.idea/
-*.iml
-
-# Claves y archivos sensibles
-config/settings_local.py
-
-
-estructura_proyecto.php
-=======
 # Archivos de Python
 *.pyc
 __pycache__/
@@ -68,7 +19,5 @@ media/
 .vscode/
 .idea/
 
-
 estructura_proyecto.php
 h origin main
->>>>>>> recuperacion
