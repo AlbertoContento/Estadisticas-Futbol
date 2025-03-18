@@ -4,14 +4,14 @@ from django.conf import settings
 from django.core.files import File
 from equipos.models import Equipo, EstadisticasEquipo
 from ligas.models import Liga
-from unidecode import unidecode  # Importamos la función unidecode
+from unidecode import unidecode  # Importamos la función unidecode para manejar caracteres especiales
 
 
-# Definir rutas de las carpetas
+# Definir rutas de las carpetas donde están los archivos CSV
 RUTA_CLASIFICACION = os.path.join(settings.BASE_DIR, "data/clasificacion")
 RUTA_ESTADISTICA = os.path.join(settings.BASE_DIR, "data/estadisticas")
 
-# Diccionario de nombres de archivo y ligas
+# Diccionario que asocia los nombres de archivos CSV con los nombres de las ligas
 LIGAS = {
   "La_Liga.csv": "La Liga",
   "Premier_League.csv": "Premier League",
@@ -40,7 +40,7 @@ def crear_o_buscar_equipo(nombre_equipo, liga):
   return equipo
 
 def procesar_archivo(ruta_csv, liga, tipo_datos):
-  """Procesa los archivos CSV y actualiza la base de datos."""
+  """Procesa un archivo CSV y actualiza la base de datos con los datos de clasificación o estadísticas."""
   print(f"📄 Procesando archivo: {ruta_csv}...")
   print(f"🆙🆙🆙🆙🆙{tipo_datos}")
 
@@ -51,16 +51,17 @@ def procesar_archivo(ruta_csv, liga, tipo_datos):
   df = pd.read_csv(ruta_csv)
   if not comprobar_dataframe(df):
     return
-  # Iterar sobre las filas del CSV
+  # Iteramos sobre cada fila del CSV para extraer y almacenar los datos
   for _, fila in df.iterrows(): 
-    nombre_equipo = fila["Equipo"]
-    equipo = crear_o_buscar_equipo(nombre_equipo, liga)
+    nombre_equipo = fila["Equipo"]# Obtener el nombre del equipo
+    equipo = crear_o_buscar_equipo(nombre_equipo, liga)# Buscar o crear el equipo
     print("Columnas del DataFrame:", df.columns.tolist())
     if tipo_datos == "clasificacion":
+      # Si el archivo es de clasificación, actualizamos los datos de clasificación del equipo
       print("Actualizando clasificacion")
       ultimos_5 = fila.get("Últimos 5", "").strip()
       if len(ultimos_5) > 14:
-        ultimos_5 = ultimos_5[:14]
+        ultimos_5 = ultimos_5[:14]# Limita la longitud de la cadena a 14 caracteres
       EstadisticasEquipo.objects.update_or_create(
         equipo=equipo,
         defaults={
@@ -79,6 +80,7 @@ def procesar_archivo(ruta_csv, liga, tipo_datos):
       print(f"✅ Clasificacion actualizada para {equipo.nombre}")
 
     if tipo_datos == "estadisticas":
+      # Si el archivo es de estadísticas, actualizamos otros datos estadísticos del equipo
       print("Actualizando estadisticas")
       EstadisticasEquipo.objects.update_or_create(
         equipo=equipo,

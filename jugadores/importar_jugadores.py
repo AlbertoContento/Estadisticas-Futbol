@@ -37,6 +37,7 @@ def normalizar_nombre_equipo(nombre_archivo):
     nombre = nombre_archivo.replace("_jugadores.csv", "")
     # Reemplaza los guiones bajos por espacios
     nombre = nombre.replace("_", " ").strip()
+    #Estos equipos tienen diferente nombre lo hacemos manual
     if nombre == "Brighton and Hove Albion":
         nombre = "Brighton"
     if nombre == "Internazionale":
@@ -115,9 +116,9 @@ def importar_jugadores():
                     "minutos_jugados": fila.get("Mín", 0),
                 },
             )
-            # if creado:
-            #     print(f"✅ Jugador {jugador} creado correctamente")
-            # else:
-            #     print(f"✅ Jugador {jugador} actualizado correctamente")
+            if creado:
+                print(f"✅ Jugador {jugador} creado correctamente")
+            else:
+                print(f"✅ Jugador {jugador} actualizado correctamente")
         print(f"✅ Jugadores importados para {equipo_obj.nombre}")
     print("✅FINALIZACINO DE IMPORTACION✅")

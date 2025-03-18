@@ -48,6 +48,7 @@ class RegisterView(CreateView):
         return response
     
     def form_invalid(self, form):
+        """Método que se ejecuta cuando el formulario es inválido"""
         response = super().form_invalid(form)
         print("Errores del formulario:", form.errors)  # Imprime los errores en la consola
         messages.add_message(self.request, messages.ERROR, "Error al registrar el usuario")

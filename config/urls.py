@@ -9,6 +9,7 @@ from jugadores.views import importar_jugadores_view
 from core.views import ContactView, LegalView
 from core.views import RegisterView
 
+#URLS
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
