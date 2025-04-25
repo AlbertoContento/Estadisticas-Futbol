@@ -147,9 +147,8 @@ Instala mysqlclient con:
 pip install mysqlclient
 ```
 
-El programa utiliza webbrowser para abrir el navegador y reproducir la musica y threading para comprobar la hora cada segundo
-
 📄 Licencia
+Este proyecto está bajo la licencia MIT.
 
 🎨 Capturas de Pantalla 
 Aquí tienes una vista previa de cómo luce el proyecto:

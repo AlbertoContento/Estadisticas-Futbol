@@ -23,7 +23,7 @@ class RegisterForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password"])  # Encripta la contraseña
         user.save()  # Guarda en la BD si commit es True
         return user
-    
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Nombre de usuario")
