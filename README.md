@@ -148,7 +148,6 @@ pip install mysqlclient
 ```
 
 📄 Licencia
-
 Este proyecto está bajo la licencia MIT.
 
 🎨 Capturas de Pantalla 
